@@ -1,0 +1,1 @@
+DROP INDEX IF EXISTS `Tags_tag_name_unique`;

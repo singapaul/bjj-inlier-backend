@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "21a0cad7-fcdb-41eb-867a-43a844f570b9",
+  "id": "c8e95cfe-edac-41e6-aa16-ae806c0dca3c",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "Person": {
@@ -10,9 +10,9 @@
         "id": {
           "name": "id",
           "type": "integer",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
         },
         "userName": {
           "name": "userName",
@@ -50,6 +50,14 @@
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
+        },
+        "showBoating": {
+          "name": "showBoating",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": false
         }
       },
       "indexes": {},

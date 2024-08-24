@@ -1,1 +1,0 @@
-ALTER TABLE `Technique` ADD `showBoating` integer DEFAULT false;

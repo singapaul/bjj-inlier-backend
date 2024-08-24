@@ -1,18 +1,192 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "87b0e0d2-406d-44d2-9430-28bff00b3340",
-  "prevId": "21a0cad7-fcdb-41eb-867a-43a844f570b9",
+  "id": "93cc2387-77a0-4f24-ae30-92fa6ddeb12b",
+  "prevId": "c8e95cfe-edac-41e6-aa16-ae806c0dca3c",
   "tables": {
-    "Person": {
-      "name": "Person",
+    "Session_Tags": {
+      "name": "Session_Tags",
       "columns": {
-        "id": {
-          "name": "id",
+        "session_id": {
+          "name": "session_id",
           "type": "integer",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
+        },
+        "tag_id": {
+          "name": "tag_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "Session_Tags_session_id_Training_Sessions_session_id_fk": {
+          "name": "Session_Tags_session_id_Training_Sessions_session_id_fk",
+          "tableFrom": "Session_Tags",
+          "tableTo": "Training_Sessions",
+          "columnsFrom": [
+            "session_id"
+          ],
+          "columnsTo": [
+            "session_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "Session_Tags_tag_id_Tags_tag_id_fk": {
+          "name": "Session_Tags_tag_id_Tags_tag_id_fk",
+          "tableFrom": "Session_Tags",
+          "tableTo": "Tags",
+          "columnsFrom": [
+            "tag_id"
+          ],
+          "columnsTo": [
+            "tag_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "Tags": {
+      "name": "Tags",
+      "columns": {
+        "tag_id": {
+          "name": "tag_id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "tag_name": {
+          "name": "tag_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "Tags_tag_name_unique": {
+          "name": "Tags_tag_name_unique",
+          "columns": [
+            "tag_name"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "Training_Sessions": {
+      "name": "Training_Sessions",
+      "columns": {
+        "session_id": {
+          "name": "session_id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "session_date": {
+          "name": "session_date",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "score": {
+          "name": "score",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "fitness_score": {
+          "name": "fitness_score",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "what_worked": {
+          "name": "what_worked",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "what_did_not_work": {
+          "name": "what_did_not_work",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "duration": {
+          "name": "duration",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "instructor": {
+          "name": "instructor",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "rounds_sparred": {
+          "name": "rounds_sparred",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "Training_Sessions_user_id_Users_id_fk": {
+          "name": "Training_Sessions_user_id_Users_id_fk",
+          "tableFrom": "Training_Sessions",
+          "tableTo": "Users",
+          "columnsFrom": [
+            "user_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "Users": {
+      "name": "Users",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
         },
         "userName": {
           "name": "userName",
@@ -21,54 +195,8 @@
           "notNull": false,
           "autoincrement": false
         },
-        "userCountry": {
-          "name": "userCountry",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {},
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
-    },
-    "Style": {
-      "name": "Style",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "guardType": {
-          "name": "guardType",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {},
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
-    },
-    "Technique": {
-      "name": "Technique",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "technique": {
-          "name": "technique",
+        "password": {
+          "name": "password",
           "type": "text",
           "primaryKey": false,
           "notNull": false,
