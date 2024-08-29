@@ -1,0 +1,25 @@
+  type Book {
+    title: String
+    author: String
+  }
+
+  type TrainingSession {
+    sessionId: ID
+    userId: ID
+    sessionDate: String
+    score: Int
+    fitnessScore: Int
+    whatWorked: String
+    whatDidNotWork: String
+    durations: Int
+    instructor: String
+    roundsSparred: Int
+  }
+
+  # The "Query" type is special: it lists all of the available queries that
+  # clients can execute, along with the return type for each. In this
+  # case, the "books" query returns an array of zero or more Books (defined above).
+  type Query {
+    books: [Book]
+    trainingSessions(userId: Int!): [TrainingSession!]!
+  }

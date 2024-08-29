@@ -5,3 +5,10 @@ sql script creating tables is telling sql to create tables. I am generating a sq
 
 migration = pushing data to database
 moving data from one version to another
+
+
+safekeeping old start script
+
+```
+    "start": "ts-node src/app.ts",
+```

@@ -2,9 +2,9 @@ import { count } from "drizzle-orm";
 import { db } from "..";
 import { trainingSessions, users } from "../schema";
 import { eq } from "drizzle-orm";
-export const getTrainingSessionsByUser = async (userID: number) => {
+export const getTrainingSessionsByUser = async (userId: number) => {
   const result = await db.query.trainingSessions.findMany({
-    where: (session, { eq }) => eq(session.userId, userID),
+    where: (session, { eq }) => eq(session.userId, userId),
     with: {
       sessionTags: {
         with: {

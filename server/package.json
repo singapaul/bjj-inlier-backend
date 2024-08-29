@@ -2,9 +2,10 @@
   "name": "server",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "ts-node src/app.ts",
-    "dev": "nodemon src/app.ts",
+    "dev": "nodemon --watch src --ext ts,js --exec \"node --loader ts-node/esm\" src/app.ts",
     "build": "tsc",
     "generate": "drizzle-kit generate --config ./drizzle.config.ts",
     "migrate": "drizzle-kit migrate --config ./drizzle.config.ts",
@@ -15,10 +16,12 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@apollo/server": "^4.11.0",
     "@types/better-sqlite3": "^7.6.11",
     "better-sqlite3": "^11.2.1",
     "drizzle-orm": "^0.33.0",
     "express": "^4.19.2",
+    "graphql": "^16.9.0",
     "sqlite3": "^5.1.7"
   },
   "devDependencies": {
