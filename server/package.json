@@ -4,6 +4,7 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node src/app.ts",
+    "dev": "nodemon src/app.ts",
     "build": "tsc",
     "generate": "drizzle-kit generate --config ./drizzle.config.ts",
     "migrate": "drizzle-kit migrate --config ./drizzle.config.ts",

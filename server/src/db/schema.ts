@@ -26,7 +26,6 @@ export const trainingSessions = sqliteTable("Training_Sessions", {
 // Tags table
 export const tags = sqliteTable("Tags", {
   tagId: integer("tag_id").primaryKey({ autoIncrement: true }),
-//   tagName: text("tag_name").notNull().unique(),
   tagName: text("tag_name").notNull(),
 });
 
@@ -34,6 +33,9 @@ export const tags = sqliteTable("Tags", {
 export const sessionTags = sqliteTable("Session_Tags", {
   sessionId: integer("session_id").references(() => trainingSessions.sessionId),
   tagId: integer("tag_id").references(() => tags.tagId),
+  // userId: integer("user_id")
+  // .notNull()
+  // .references(() => users.userId),
 });
 
 // One user has many sessions
@@ -45,7 +47,10 @@ export const userSessions = relations(users, ({ many }) => ({
 export const trainingSessionsRelations = relations(
   trainingSessions,
   ({ one, many }) => ({
-    user: one(users),
+    user: one(users, {
+      fields: [trainingSessions.userId],
+      references: [users.userId],
+    }),
     sessionTags: many(sessionTags),
   })
 );
@@ -55,6 +60,12 @@ export const tagsRelations = relations(tags, ({ many }) => ({
 }));
 
 export const sessionTagsRelations = relations(sessionTags, ({ one }) => ({
-  trainingSession: one(trainingSessions),
-  tag: one(tags),
+  trainingSession: one(trainingSessions, {
+    fields: [sessionTags.sessionId],
+    references: [trainingSessions.sessionId],
+  }),
+  tag: one(tags, {
+    fields: [sessionTags.tagId],
+    references: [tags.tagId],
+  }),
 }));
